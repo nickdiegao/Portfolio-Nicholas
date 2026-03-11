@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./App.css";
+import emailjs from '@emailjs/browser';
 
 /* ─────────────────────────────────────────────
    HOOK — animated counter
@@ -125,12 +126,28 @@ function ContactForm() {
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!form.nome || !form.email || !form.mensagem) { setStatus("err_empty"); return; }
+    if (!form.nome || !form.email || !form.mensagem) {
+      setStatus("err_empty");
+      return;
+    }
     setStatus("sending");
-    // Simula envio — substitua pela integração EmailJS em produção
-    await new Promise(r => setTimeout(r, 1400));
-    setStatus("ok");
-    setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+    try {
+      await emailjs.send(
+        "service_pzrun8s",
+        "template_ae7qy3k",
+        {
+          nome: form.nome,
+          email: form.email,
+          assunto: form.assunto,
+          mensagem: form.mensagem,
+        },
+        "uS6X_dbxaOIfcTjUQ"
+      );
+      setStatus("ok");
+      setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+    } catch {
+      setStatus("err_empty");
+    }
   };
 
   return (
@@ -158,9 +175,6 @@ function ContactForm() {
       <button className="form-submit" type="submit" disabled={status === "sending"}>
         <span>{status === "sending" ? "Enviando..." : "Enviar Mensagem"}</span>
       </button>
-      <div style={{fontFamily:"'DM Mono',monospace",fontSize:10,color:"var(--faint)",letterSpacing:".1em",marginTop:4}}>
-        * Para produção, conecte EmailJS ao campo service_id
-      </div>
     </form>
   );
 }
