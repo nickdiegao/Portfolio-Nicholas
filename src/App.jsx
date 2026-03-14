@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "./App.css";
+import emailjs from '@emailjs/browser';
 
 const PROJECTS = [
   { id:"01", name:"TaskFlow", private:false, url:"github.com/nickdiegao/taskflow",
@@ -54,6 +55,7 @@ function ContactForm() {
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
   const submit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     if (!form.nome || !form.email || !form.mensagem) { setStatus("empty"); return; }
     setStatus("sending");
     try {
@@ -63,6 +65,30 @@ function ContactForm() {
       );
       setStatus("ok"); setForm({ nome:"", email:"", assunto:"", mensagem:"" });
     } catch { setStatus("err"); }
+=======
+    if (!form.nome || !form.email || !form.mensagem) {
+      setStatus("err_empty");
+      return;
+    }
+    setStatus("sending");
+    try {
+      await emailjs.send(
+        "service_pzrun8s",
+        "template_ae7qy3k",
+        {
+          nome: form.nome,
+          email: form.email,
+          assunto: form.assunto,
+          mensagem: form.mensagem,
+        },
+        "uS6X_dbxaOIfcTjUQ"
+      );
+      setStatus("ok");
+      setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+    } catch {
+      setStatus("err_empty");
+    }
+>>>>>>> af98f405c36c627844b4d44135ca5254f9be5b04
   };
   return (
     <form className="cform" onSubmit={submit}>
