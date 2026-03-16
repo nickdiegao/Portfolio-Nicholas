@@ -21,6 +21,7 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 
 /* ── BLOBS ── */
 .blobs { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.hero-content { position:relative; z-index:1; text-align:center; max-width:900px; width:100%; }
 .blob { position:absolute; opacity:.18; }
 .blob path { fill:var(--indigo); }
 
@@ -74,8 +75,10 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 .hero-sub strong { color:var(--text); }
 .hero-ctas { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
 
-.cta-main { font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.1em; background:var(--indigo); color:#fff; border:none; padding:16px 32px; cursor:pointer; transition:all .25s; }
-.cta-main:hover { background:var(--indigo2); transform:translateY(-2px); }
+.cta-main { font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.1em; background:var(--indigo); color:#fff; border:2px solid var(--indigo); padding:16px 32px; cursor:pointer; position:relative; overflow:hidden; transition:color .35s; z-index:1; }
+.cta-main::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:#fff; transition:left .35s cubic-bezier(.4,0,.2,1); z-index:-1; }
+.cta-main:hover::before { left:0; }
+.cta-main:hover { color:var(--indigo); }
 .cta-ghost { font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.1em; color:var(--muted); text-decoration:none; padding:16px 0; transition:color .2s; border-bottom:1px solid var(--faint); }
 .cta-ghost:hover { color:var(--text); border-color:var(--text); }
 
@@ -95,7 +98,8 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 .about-body p { font-size:16px; line-height:1.85; color:var(--muted); margin-bottom:20px; }
 .about-body strong { color:var(--text); font-weight:600; }
 .about-pills { display:flex; gap:8px; flex-wrap:wrap; margin-top:24px; }
-.about-pills span { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo); border:1px solid rgba(99,102,241,.3); padding:6px 14px; }
+.about-pills span { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo2); background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.2); padding:7px 18px; border-radius:999px; transition:all .25s; cursor:default; }
+.about-pills span:hover { background:rgba(99,102,241,0.18); color:#fff; }
 .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
 .stat-item { background:var(--bg2); padding:32px 28px; transition:background .3s; cursor:default; }
 .stat-item:hover { background:var(--bg3); }
@@ -112,8 +116,8 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 .skill-group-num { font-family:'DM Mono',monospace; font-size:10px; color:var(--faint); letter-spacing:.12em; margin-bottom:10px; }
 .skill-group-cat { font-size:18px; font-weight:800; color:var(--text); margin-bottom:16px; letter-spacing:-.02em; }
 .skill-group-items { display:flex; flex-wrap:wrap; gap:7px; }
-.skill-group-items span { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); background:var(--bg); border:1px solid var(--border); padding:5px 12px; transition:all .2s; }
-.skill-group:hover .skill-group-items span { border-color:rgba(99,102,241,.3); color:var(--indigo2); }
+.skill-group-items span { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 14px; border-radius:999px; transition:all .2s; }
+.skill-group:hover .skill-group-items span { border-color:rgba(99,102,241,.3); color:var(--indigo2); background:rgba(99,102,241,0.08); }
 
 /* ── PROJECTS ── */
 .projects { padding:140px 72px; border-top:1px solid var(--border); }
@@ -123,8 +127,8 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 .proj-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
 .proj-meta { display:flex; align-items:center; gap:16px; }
 .proj-num { font-family:'DM Mono',monospace; font-size:11px; color:var(--faint); letter-spacing:.12em; }
-.proj-tag { font-family:'DM Mono',monospace; font-size:11px; color:var(--indigo); background:var(--indigo3); border:1px solid rgba(99,102,241,.2); padding:4px 12px; letter-spacing:.08em; }
-.proj-gh { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--muted); text-decoration:none; border:1px solid var(--border2); padding:8px 16px; transition:all .25s; }
+.proj-tag { font-family:'DM Mono',monospace; font-size:11px; color:var(--indigo2); background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,.2); padding:4px 14px; border-radius:999px; letter-spacing:.08em; }
+.proj-gh { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--muted); text-decoration:none; border:1px solid var(--border2); padding:6px 16px; border-radius:999px; transition:all .25s; }
 .proj-gh:hover { color:var(--indigo); border-color:var(--indigo); }
 .proj-lock { font-family:'DM Mono',monospace; font-size:11px; color:var(--faint); letter-spacing:.08em; }
 .proj-name { font-family:'Instrument Serif',serif; font-size:clamp(40px,5vw,72px); font-weight:400; color:var(--text); line-height:1; margin-bottom:18px; letter-spacing:-.02em; transition:color .3s; }
@@ -134,7 +138,7 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 .proj-pts li { font-size:13px; color:var(--muted); display:flex; gap:10px; line-height:1.6; }
 .proj-pts li::before { content:'→'; color:var(--indigo); flex-shrink:0; }
 .proj-stack { display:flex; flex-wrap:wrap; gap:6px; }
-.proj-stack span { font-family:'DM Mono',monospace; font-size:10px; color:var(--faint); padding:4px 10px; border:1px solid var(--border); }
+.proj-stack span { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); padding:4px 12px; border:1px solid rgba(255,255,255,0.08); border-radius:999px; background:rgba(255,255,255,0.03); }
 
 /* ── EXPERIENCE ── */
 .exp { padding:140px 72px; border-top:1px solid var(--border); }
@@ -233,3 +237,20 @@ body { background:var(--bg); color:var(--text); font-family:'Cabinet Grotesk',sa
 
 /* Fallback visibility if GSAP fails */
 .about, .skills, .projects, .exp, .contact, .footer { visibility:visible; }
+
+/* ── GSAP SAFE FALLBACK ── */
+/* Garante visibilidade caso ScrollTrigger não dispare */
+.about-big-text, .about-body p, .stat-item,
+.skill-group, .proj, .exp-item,
+.contact-left, .contact-right,
+.section-heading {
+  will-change: transform, opacity;
+}
+
+/* ── SKILL BARS ── */
+.skill-bars { margin-top:16px; display:flex; flex-direction:column; gap:10px; }
+.sbar { }
+.sbar-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:.06em; }
+.sbar-pct { color:var(--indigo); font-weight:500; }
+.sbar-track { height:2px; background:var(--border2); overflow:hidden; border-radius:2px; }
+.sbar-fill { height:100%; background:linear-gradient(90deg, var(--indigo), var(--indigo2)); border-radius:2px; transition:none; }

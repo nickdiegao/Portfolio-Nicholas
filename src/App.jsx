@@ -21,12 +21,12 @@ const PROJECTS = [
 ];
 
 const SKILLS = [
-  { cat:"Linguagens",    items:["TypeScript","JavaScript","Java","Node.js","Python"] },
-  { cat:"Frameworks",    items:["NestJS","Express.js","Spring Boot"] },
-  { cat:"Testes",        items:["Jest","Supertest","JUnit","TDD"] },
-  { cat:"Banco de Dados",items:["PostgreSQL","MongoDB","MySQL","Redis"] },
-  { cat:"DevOps",        items:["Docker","GitHub Actions","AWS EC2","RDS","S3"] },
-  { cat:"Conceitos",     items:["REST APIs","SOLID","Clean Code","Design Patterns"] },
+  { cat:"Linguagens",    items:["TypeScript","JavaScript","Java","Node.js","Python"],  bars:[{n:"TypeScript",p:85},{n:"JavaScript",p:90},{n:"Python",p:70}] },
+  { cat:"Frameworks",    items:["NestJS","Express.js","Spring Boot"],                  bars:[{n:"NestJS",p:85},{n:"Spring Boot",p:70},{n:"Express",p:80}] },
+  { cat:"Testes",        items:["Jest","Supertest","JUnit","TDD"],                     bars:[{n:"Jest",p:80},{n:"TDD",p:75},{n:"JUnit",p:65}] },
+  { cat:"Banco de Dados",items:["PostgreSQL","MongoDB","MySQL","Redis"],               bars:[{n:"PostgreSQL",p:80},{n:"MongoDB",p:70},{n:"Redis",p:65}] },
+  { cat:"DevOps",        items:["Docker","GitHub Actions","AWS EC2","RDS","S3"],       bars:[{n:"Docker",p:80},{n:"AWS",p:70},{n:"CI/CD",p:75}] },
+  { cat:"Conceitos",     items:["REST APIs","SOLID","Clean Code","Design Patterns"],   bars:[{n:"SOLID",p:85},{n:"Clean Code",p:88},{n:"REST",p:90}] },
 ];
 
 function Blobs() {
@@ -129,6 +129,19 @@ export default function App() {
     gsap.fromTo(".stat-item", { opacity:0, y:40 }, { opacity:1, y:0, stagger:.1, duration:.7, clearProps:"all", scrollTrigger:{ trigger:".stats-row", start:"top 85%" } });
 
     /* SKILLS */
+    /* SKILL BARS */
+    setTimeout(() => {
+      document.querySelectorAll(".sbar-fill").forEach(bar => {
+        const pct = bar.dataset.pct;
+        gsap.fromTo(bar,
+          { width:"0%" },
+          { width:`${pct}%`, duration:1.4, ease:"power2.out",
+            scrollTrigger:{ trigger:bar, start:"top 95%" }
+          }
+        );
+      });
+    }, 400);
+
     gsap.fromTo(".skill-group", { opacity:0, y:36 }, { opacity:1, y:0, stagger:.07, duration:.7, ease:"power2.out", clearProps:"all", scrollTrigger:{ trigger:".skills-wrap", start:"top 80%" } });
 
     /* PROJECTS */
@@ -173,7 +186,7 @@ export default function App() {
     const el = document.getElementById(id);
     if (!el) return;
     if (window.gsap) {
-      window.gsap.to(window, { duration:.9, scrollTo:{ y:el, offsetY:70 }, ease:"power3.inOut" });
+      window.gsap.to(window, { duration:.4, scrollTo:{ y:el, offsetY:70 }, ease:"power2.inOut" });
     } else {
       el.scrollIntoView({ behavior:"smooth" });
     }
@@ -255,6 +268,19 @@ export default function App() {
               <div className="skill-group-num">0{i+1}</div>
               <div className="skill-group-cat">{s.cat}</div>
               <div className="skill-group-items">{s.items.map(t=><span key={t}>{t}</span>)}</div>
+              <div className="skill-bars">
+                {s.bars.map(b=>(
+                  <div className="sbar" key={b.n}>
+                    <div className="sbar-head">
+                      <span>{b.n}</span>
+                      <span className="sbar-pct">{b.p}%</span>
+                    </div>
+                    <div className="sbar-track">
+                      <div className="sbar-fill" data-pct={b.p} style={{width:0}}/>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -326,7 +352,7 @@ export default function App() {
 
       <footer className="footer">
         <span>Nicholas Diego · Recife, Brasil 🇧🇷</span>
-        <span>© 2025</span>
+        <span>© 2026</span>
       </footer>
     </>
   );
