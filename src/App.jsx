@@ -3,16 +3,16 @@ import emailjs from "@emailjs/browser";
 import "./App.css";
 
 const PROJECTS = [
-  { id:"01", name:"TaskFlow", private:false, url:"github.com/nickdiegao/taskflow",
-    tag:"TypeScript · API",
-    desc:"API de gerenciamento de tarefas com autenticação JWT, filas assíncronas e cobertura de testes superior a 80%.",
-    points:["JWT com roles e guardas de acesso por perfil","Filas Bull/Redis para e-mails assíncronos","Cobertura +80% com Jest e Supertest","Pipeline CI com GitHub Actions"],
-    stack:["TypeScript","NestJS","PostgreSQL","Redis","Docker","Jest","GitHub Actions"] },
-  { id:"02", name:"Ponto HGA", private:true, url:null,
+  { id:"01", name:"Ponto HGA", private:true, url:null,
     tag:"Python · Desktop",
     desc:"GUI desktop para geração automática de fichas de ponto — 2 por página A4 — a partir de template PDF e planilha XLSX. Em uso ativo no Hospital Geral de Areias.",
     points:["Impacto direto em +800 colaboradores do hospital","Leitura de XLSX com detecção automática do cabeçalho","Geração de PDF 2 fichas/A4 via ReportLab","Distribuído como .exe via PyInstaller"],
     stack:["Python","Tkinter","pandas","openpyxl","ReportLab","pypdf","Pillow","PyInstaller"] },
+  { id:"02", name:"TaskFlow", private:false, url:"github.com/nickdiegao/taskflow",
+    tag:"TypeScript · API",
+    desc:"API de gerenciamento de tarefas com autenticação JWT, filas assíncronas e cobertura de testes superior a 80%.",
+    points:["JWT com roles e guardas de acesso por perfil","Filas Bull/Redis para e-mails assíncronos","Cobertura +80% com Jest e Supertest","Pipeline CI com GitHub Actions"],
+    stack:["TypeScript","NestJS","PostgreSQL","Redis","Docker","Jest","GitHub Actions"] },
   { id:"03", name:"ecoEduca", private:false, url:"github.com/nickdiegao/ecoeduca",
     tag:"Java · Cloud",
     desc:"Plataforma educacional com arquitetura híbrida dual-stack e deploy em cloud AWS.",
@@ -57,9 +57,9 @@ function ContactForm() {
     if (!form.nome || !form.email || !form.mensagem) { setStatus("empty"); return; }
     setStatus("sending");
     try {
-      await emailjs.send("SEU_SERVICE_ID","SEU_TEMPLATE_ID",
+      await emailjs.send("service_7fgc9p8","template_p984qvg",
         { nome:form.nome, email:form.email, assunto:form.assunto, mensagem:form.mensagem },
-        "SUA_PUBLIC_KEY"
+        "uS6X_dbxaOIfcTjUQ"
       );
       setStatus("ok"); setForm({ nome:"", email:"", assunto:"", mensagem:"" });
     } catch { setStatus("err"); }
