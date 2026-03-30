@@ -101,16 +101,6 @@ Ou conecte o repositório diretamente em [vercel.com](https://vercel.com) para d
 
 ---
 
-## 🎨 Design
-
-- **Tema:** Dark — Terracota & Bege
-- **Paleta principal:** `#1C1714` · `#C4532A` · `#D4B483`
-- **Fontes:** Cormorant Garamond (títulos) · DM Mono (código/labels) · Jost (corpo)
-- **Animações:** Scroll reveal com `IntersectionObserver`, cursor customizado com lag suave
-- **Textura:** Grain overlay via SVG filter para profundidade analógica
-
----
-
 ## 📬 Contato
 
 | Canal | Link |
