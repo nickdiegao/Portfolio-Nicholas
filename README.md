@@ -12,13 +12,6 @@ O design segue uma estética **dark sofisticada** com paleta Terracota & Bege, t
 
 ---
 
-## 🖥️ Demo
-
-> Após o deploy, substitua pelo link real:
-> **[nicholasdiego.vercel.app](https://nicholasdiego.vercel.app)**
-
----
-
 ## 🚀 Tecnologias Utilizadas
 
 | Tecnologia | Versão | Uso |
